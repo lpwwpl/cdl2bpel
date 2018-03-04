@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.w3.org/2005/10/cdl" xmlns:tns="http://www.w3.org/2005/10/cdl/workunit-with-repeat-cdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="workunit-with-repeat-cdl" targetNamespace="http://www.w3.org/2005/10/cdl/workunit-with-repeat-cdl" version="1.1">
+	<informationType name="Boolean" type="xsd:boolean"/>
+	<informationType name="String" type="xsd:string"/>
+	<informationType name="RequestForQuote" type="requestForQuote" />
+	<informationType name="UpdateQuote" type="updateQuote" />
+	<informationType name="AcceptQuote" type="acceptQuote" />
+	<token informationType="tns:String" name="String"/>
+	<token informationType="tns:String" name="ID"/>
+	<tokenLocator tokenName="tns:ID" informationType="tns:RequestForQuote" query="//@id" />
+	<tokenLocator tokenName="tns:ID" informationType="tns:UpdateQuote" query="//@id" />
+	<tokenLocator tokenName="tns:ID" informationType="tns:AcceptQuote" query="//@id" />
+     <roleType name="BuyerRole">
+         <behavior interface="BuyerInterface" name="BuyerBehavior"/>
+     </roleType>
+     <roleType name="SellerRole">
+         <behavior interface="SellerInterface" name="SellerBehavior"/>
+     </roleType>
+     <relationshipType name="BuyerSellerRelationship">
+         <roleType behavior="BuyerBehavior" typeRef="tns:BuyerRole"/>
+         <roleType behavior="SellerBehavior" typeRef="tns:SellerRole"/>
+     </relationshipType>
+     <participantType name="Buyer">
+         <roleType typeRef="tns:BuyerRole"/>
+     </participantType>
+     <participantType name="Seller">
+         <roleType typeRef="tns:SellerRole"/>
+     </participantType>
+     <channelType name="channelType1">
+         <roleType behavior="SellerBehavior" typeRef="tns:SellerRole"/>
+         <reference>
+             <token name="tns:String"/>
+         </reference>
+		<identity>
+			<token name="tns:ID"/>
+		</identity>
+     </channelType>
+     <choreography name="workunit-with-repeat-cdl" root="true">
+         <relationship type="tns:BuyerSellerRelationship"/>
+         <variableDefinitions>
+             <variable channelType="tns:channelType1" name="channel1"/>
+         </variableDefinitions>
+         <sequence>
+             <interaction channelVariable="tns:channel1" initiate="true" name="RequestForQuote" operation="requestForQuote">
+                 <description type="documentation">
+                     Send a request for quote
+                 </description>
+                 <participate fromRoleTypeRef="tns:BuyerRole" relationshipType="tns:BuyerSellerRelationship" toRoleTypeRef="tns:SellerRole"/>
+                 <exchange action="request" informationType="tns:RequestForQuote" name="rfqReq">
+                     <send/>
+                     <receive/>
+                 </exchange>
+                 <exchange action="respond" informationType="tns:RequestForQuote" name="rfqResp">
+                     <send/>
+                     <receive/>
+                 </exchange>
+             </interaction>
+             <workunit name="Barter" repeat="true()">
+                 <description type="documentation">
+                     Send quote updates until receive acceptable quote response
+                 </description>
+                 <interaction channelVariable="tns:channel1" initiate="true" name="UpdateQuote" operation="updateQuote">
+                     <description type="documentation">
+                         Request an updated quote
+                     </description>
+                     <participate fromRoleTypeRef="tns:BuyerRole" relationshipType="tns:BuyerSellerRelationship" toRoleTypeRef="tns:SellerRole"/>
+                     <exchange action="request" informationType="tns:UpdateQuote" name="updatedQuoteReq">
+                         <send/>
+                         <receive/>
+                     </exchange>
+                     <exchange action="respond" informationType="tns:UpdateQuote" name="updatedQuoteResp">
+                         <send/>
+                         <receive/>
+                     </exchange>
+                 </interaction>
+             </workunit>
+             <interaction channelVariable="tns:channel1" name="AcceptQuote" operation="acceptQuote">
+                 <description type="documentation">
+                     Accept the most recent quote
+                 </description>
+                 <participate fromRoleTypeRef="tns:BuyerRole" relationshipType="tns:BuyerSellerRelationship" toRoleTypeRef="tns:SellerRole"/>
+                 <exchange action="request" informationType="tns:AcceptQuote" name="acceptReq">
+                     <send/>
+                     <receive/>
+                 </exchange>
+                 <exchange action="respond" informationType="tns:AcceptQuote" name="acceptResp">
+                     <send/>
+                     <receive/>
+                 </exchange>
+             </interaction>
+         </sequence>
+     </choreography>
+ </package>

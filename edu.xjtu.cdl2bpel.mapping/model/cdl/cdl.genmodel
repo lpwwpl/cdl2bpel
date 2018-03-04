@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="CDL2BPEL_XJTU"
+    modelDirectory="/edu.xjtu.cdl2bpel.mapping/src" modelPluginID="edu.xjtu.cdl2bpel.mapping"
+    modelName="Cdl" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>cdl.ecore</foreignModel>
+  <genPackages prefix="CDL" basePackage="edu.xjtu.cdl2bpel" disposableProviderFactory="true"
+      ecorePackage="cdl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//ActionTypeEnumByChannelType">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActionTypeEnumByChannelType/Request_respond"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActionTypeEnumByChannelType/Request"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActionTypeEnumByChannelType/Respond"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//ActionTypeEnumByExchangeInfo">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActionTypeEnumByExchangeInfo/Request"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActionTypeEnumByExchangeInfo/Respond"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActionTypeEnumByExchangeInfo/Notify"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//UsageTypeEnumByChannelType">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//UsageTypeEnumByChannelType/Distinct"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//UsageTypeEnumByChannelType/Once"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//UsageTypeEnumByChannelType/Shared"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//WhenTypeEnumByRecordInfo">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//WhenTypeEnumByRecordInfo/Before"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//WhenTypeEnumByRecordInfo/After"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//WhenTypeEnumByRecordInfo/Timeout"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//KeyTypeEnumByIdentify">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//KeyTypeEnumByIdentify/Primary"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//KeyTypeEnumByIdentify/Alternate"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//KeyTypeEnumByIdentify/Association"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//KeyTypeEnumByIdentify/Derived"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//ChoreographyState">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ChoreographyState/UnsuccessfullyCompleted"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ChoreographyState/Closed"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ChoreographyState/SuccessfullyCompleted"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ChoreographyState/Enabled"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ChoreographyState/Actived"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ChoreographyState/Disabled"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cdl.ecore#//ActivityStateEnumByActivity">
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActivityStateEnumByActivity/Actived"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActivityStateEnumByActivity/Exceptioned"/>
+      <genEnumLiterals ecoreEnumLiteral="cdl.ecore#//ActivityStateEnumByActivity/Successed"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="cdl.ecore#//Activity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Activity/locked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Activity/state"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Activity/theBelongedRoleTypeMatrix"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Assign">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Assign/copyOfAssign"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Assign/roleType"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//BehaviorOfRoleType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//BehaviorOfRoleType/interface"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//BindInfo">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//BindInfo/thisVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//BindInfo/thisRole"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//BindInfo/freeVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//BindInfo/freeRole"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cdl.ecore#//CDLElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CDLElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CDLElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CDLElement/addition"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//ChannelType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ChannelType/usage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ChannelType/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//ChannelType/passingInfoByChannel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ChannelType/theBehaviorOfTheRoleType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ChannelType/referencedToken"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//ChannelType/identities"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ChannelType/roleType"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Choice"/>
+    <genClasses ecoreClass="cdl.ecore#//Choreography">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Choreography/complete"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Choreography/isolation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Choreography/root"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Choreography/coordination"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/relationships"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/enclosedChoreographies"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/roleTypeMatrixPlayingRoleInChoreo"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/exceptionBlock"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/finalizerBlocks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/activities"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Choreography/enclosingChoreographies"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//CaseConditionalOfSwitch"/>
+    <genClasses ecoreClass="cdl.ecore#//CopyOfAssign">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//CopyOfAssign/sourceVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CopyOfAssign/sourceExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//CopyOfAssign/targetVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CopyOfAssign/causeException"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CopyOfAssign/sourceVariablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//CopyOfAssign/targetVariablePart"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cdl.ecore#//InfoOrChannel"/>
+    <genClasses ecoreClass="cdl.ecore#//ExceptionBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//ExceptionBlock/exceptionWorkUnits"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//ExceptionWorkUnit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExceptionWorkUnit/exceptionType"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//ExchangeInfo">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ExchangeInfo/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExchangeInfo/action"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ExchangeInfo/sendRecordReference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ExchangeInfo/receiveRecordReference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExchangeInfo/faultName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ExchangeInfo/sendVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExchangeInfo/sendVariablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExchangeInfo/causeExceptionOfSend"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ExchangeInfo/receiveVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExchangeInfo/receiveVariablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ExchangeInfo/causeExceptionOfReceive"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Finalize">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Finalize/choreography"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Finalize/choreographyInstanceId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Finalize/finalizerBlock"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Finalize/roleTypeMatrixBindInfo"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//FinalizerBlock">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//FinalizerBlock/activities"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Identity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Identity/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Identity/tokens"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//InformationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//InformationType/typeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//InformationType/elementName"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Interaction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Interaction/operation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/channelVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Interaction/timeoutOfTimeToComplete"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Interaction/align"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Interaction/initiate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/relationship"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/exchangeInfos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/recordInfos"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/timeoutFromRoleTypeRecordInfo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/timeoutToRoleTypeRecordInfo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/fromRoleTypeOfBelongedRoleTypeMatrix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/toRoleTypeOfBelongedRoleTypeMatrix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Interaction/participateByInteraction"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Namespace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Namespace/prefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Namespace/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Namespace/schemaLocation"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//NoAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//NoAction/roleType"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Package/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Package/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Package/targetNamespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/namespaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/informationTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/tokens"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/tokenLocators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/roleTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/relationshipTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/participantTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/channelTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Package/choreographies"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Parallel"/>
+    <genClasses ecoreClass="cdl.ecore#//ParticipantType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ParticipantType/roleTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ParticipantType/stateless"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ParticipantType/free"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//PassingInfoOfTheChannelType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//PassingInfoOfTheChannelType/channel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//PassingInfoOfTheChannelType/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//PassingInfoOfTheChannelType/new"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//PassingInfoOfTheChannelType/enclosingChannel"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Perform">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Perform/bindsOfPerform"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Perform/choreographyInstanceId"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Perform/choreography"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Perform/waitForCompletion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//Perform/roleTypeMatrixBindInfos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Perform/block"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Perform/choreographyName"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//RecordElementInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RecordElementInfo/when"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RecordElementInfo/sourceVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RecordElementInfo/targetVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RecordElementInfo/causeException"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RecordElementInfo/sourceExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RecordElementInfo/sourceVariablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RecordElementInfo/targetVariablePart"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//RelationshipType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RelationshipType/roleTypeOfFirst"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RelationshipType/behaviorsOfRoleTypeFirst"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RelationshipType/roleTypeOfSecond"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RelationshipType/behaviorsOfRoleTypeSecond"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//RoleType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//RoleType/behaviors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RoleType/stateless"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RoleType/free"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Sequence"/>
+    <genClasses ecoreClass="cdl.ecore#//SilentAction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//SilentAction/roleType"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Token">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Token/informationType"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//TokenLocator">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//TokenLocator/token"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//TokenLocator/informationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//TokenLocator/query"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//TokenLocator/part"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//Variable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Variable/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Variable/mutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Variable/free"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//Variable/silent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//Variable/roleTypes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cdl.ecore#//WorkUnit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//WorkUnit/guardExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//WorkUnit/block"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//WorkUnit/repeatExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//WhenWithBlockOfWorkUnit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//WhenWithBlockOfWorkUnit/matchedExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//WhenWithBlockOfWorkUnit/isMatched"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//WhileWithRepeateOfWorkUnit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//WhileWithRepeateOfWorkUnit/breakOutExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//RoleTypeMatrix">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RoleTypeMatrix/roleTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RoleTypeMatrix/free"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//RoleTypeMatrixBindInfo">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RoleTypeMatrixBindInfo/thisRoleTypeMatrix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RoleTypeMatrixBindInfo/freeRoleTypeMatrix"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="cdl.ecore#//OrderingStructuralActivity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference cdl.ecore#//OrderingStructuralActivity/activities"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//ParticipateInfoByInteraction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ParticipateInfoByInteraction/relationshipType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ParticipateInfoByInteraction/fromRoleTypeRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ParticipateInfoByInteraction/toRoleTypeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//InteractionLpw">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//InteractionLpw/fromRoleType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//InteractionLpw/toRoleType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//InteractionLpw/opperation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//InteractionLpw/timeout"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//InteractionLpw/align"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//InteractionLpw/interaction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//InteractionLpw/Asyn"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//RoleTypeZlp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//RoleTypeZlp/participantBelongedByRoleType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//RoleTypeZlp/free"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//SendByExchange">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//SendByExchange/sendVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//SendByExchange/sendVariablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//SendByExchange/sendCaseException"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//ReceiveByExchange">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cdl.ecore#//ReceiveByExchange/receiveVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ReceiveByExchange/receiveVariablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cdl.ecore#//ReceiveByExchange/receiveCaseException"/>
+    </genClasses>
+    <genClasses ecoreClass="cdl.ecore#//ScopeWithNoAttrOfWorkUnit"/>
+  </genPackages>
+</genmodel:GenModel>

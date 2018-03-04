@@ -1,0 +1,62 @@
+/ActionTypeEnumByChannelType.java/1.1/Mon Feb 21 06:24:04 2011//
+/ActionTypeEnumByExchangeInfo.java/1.1/Mon Feb 21 06:24:04 2011//
+/Activity.java/1.1/Mon Feb 21 06:24:04 2011//
+/ActivityStateEnumByActivity.java/1.1/Mon Feb 21 06:24:03 2011//
+/Assign.java/1.1/Mon Feb 21 06:24:04 2011//
+/BehaviorOfRoleType.java/1.1/Mon Feb 21 06:24:04 2011//
+/BindInfo.java/1.1/Mon Feb 21 06:24:04 2011//
+/CDLDefs.java/1.1/Mon Feb 21 06:24:04 2011//
+/CDLElemNameConstants.java/1.1/Mon Feb 21 06:24:06 2011//
+/CDLElement.java/1.1/Mon Feb 21 06:24:03 2011//
+/CDLFactory.java/1.1/Mon Feb 21 06:24:05 2011//
+/CDLPackage.java/1.1/Mon Feb 21 06:24:05 2011//
+/CaseConditionalOfSwitch.java/1.1/Mon Feb 21 06:24:04 2011//
+/ChannelType.java/1.1/Mon Feb 21 06:24:05 2011//
+/Choice.java/1.1/Mon Feb 21 06:24:04 2011//
+/Choreography.java/1.1/Mon Feb 21 06:24:04 2011//
+/ChoreographyState.java/1.1/Mon Feb 21 06:24:04 2011//
+/CopyOfAssign.java/1.1/Mon Feb 21 06:24:05 2011//
+/ExceptionBlock.java/1.1/Mon Feb 21 06:24:04 2011//
+/ExceptionWorkUnit.java/1.1/Mon Feb 21 06:24:03 2011//
+/ExchangeInfo.java/1.1/Mon Feb 21 06:24:06 2011//
+/Finalize.java/1.1/Mon Feb 21 06:24:05 2011//
+/FinalizerBlock.java/1.1/Mon Feb 21 06:24:04 2011//
+/Identity.java/1.1/Mon Feb 21 06:24:04 2011//
+/InfoOrChannel.java/1.1/Mon Feb 21 06:24:04 2011//
+/InformationType.java/1.1/Mon Feb 21 06:24:04 2011//
+/Interaction.java/1.1/Mon Feb 21 06:24:04 2011//
+/InteractionLpw.java/1.1/Mon Feb 21 06:24:04 2011//
+/KeyTypeEnumByIdentify.java/1.1/Mon Feb 21 06:24:04 2011//
+/Namespace.java/1.1/Mon Feb 21 06:24:04 2011//
+/NoAction.java/1.1/Mon Feb 21 06:24:04 2011//
+/OrderingStructuralActivity.java/1.1/Mon Feb 21 06:24:05 2011//
+/Package.java/1.1/Mon Feb 21 06:24:05 2011//
+/Parallel.java/1.1/Mon Feb 21 06:24:04 2011//
+/ParticipantType.java/1.1/Mon Feb 21 06:24:06 2011//
+/ParticipateInfoByInteraction.java/1.1/Mon Feb 21 06:24:03 2011//
+/PassingInfoOfTheChannelType.java/1.1/Mon Feb 21 06:24:04 2011//
+/Perform.java/1.1/Mon Feb 21 06:24:05 2011//
+/ReceiveByExchange.java/1.1/Mon Feb 21 06:24:05 2011//
+/RecordElementInfo.java/1.1/Mon Feb 21 06:24:05 2011//
+/RelationshipType.java/1.1/Mon Feb 21 06:24:05 2011//
+/RoleType.java/1.1/Mon Feb 21 06:24:04 2011//
+/RoleTypeMatrix.java/1.1/Mon Feb 21 06:24:03 2011//
+/RoleTypeMatrixBindInfo.java/1.1/Mon Feb 21 06:24:04 2011//
+/RoleTypeZlp.java/1.1/Mon Feb 21 06:24:05 2011//
+/ScopeWithNoAttrOfWorkUnit.java/1.1/Mon Feb 21 06:24:04 2011//
+/SendByExchange.java/1.1/Mon Feb 21 06:24:04 2011//
+/Sequence.java/1.1/Mon Feb 21 06:24:04 2011//
+/SilentAction.java/1.1/Mon Feb 21 06:24:05 2011//
+/Token.java/1.1/Mon Feb 21 06:24:06 2011//
+/TokenLocator.java/1.1/Mon Feb 21 06:24:04 2011//
+/UsageTypeEnumByChannelType.java/1.1/Mon Feb 21 06:24:04 2011//
+/Variable.java/1.1/Mon Feb 21 06:24:04 2011//
+/WhenTypeEnumByRecordInfo.java/1.1/Mon Feb 21 06:24:04 2011//
+/WhenWithBlockOfWorkUnit.java/1.1/Mon Feb 21 06:24:05 2011//
+/WhileWithRepeateOfWorkUnit.java/1.1/Mon Feb 21 06:24:04 2011//
+/WorkUnit.java/1.1/Mon Feb 21 06:24:04 2011//
+D/impl////
+D/test////
+D/util////
+D/xpathFunction////
+D/xpathResolver////

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.w3.org/2005/10/cdl" xmlns:cdl="http://www.w3.org/2005/10/cdl" xmlns:tns="http://www.w3.org/2005/10/cdl/choreo-with-subchoreo-cdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" author="Charlton Barreto" name="choreo-with-subchoreo-cdl" targetNamespace="http://www.w3.org/2005/10/cdl/choreo-with-subchoreo-cdl" version="1.1">
+    <informationType name="BooleanType" type="xsd:boolean"/>
+    <informationType name="StringType" type="xsd:string"/>
+    <informationType name="RequestForQuoteType" type="tns:RequestForQuote"/>
+    <informationType name="QuoteAcceptType" type="tns:QuoteAccept"/>
+    <token informationType="tns:StringType" name="BuyerRef"/>
+    <token informationType="tns:StringType" name="SellerRef"/>
+    <token informationType="tns:StringType" name="ID"/>
+    <tokenLocator informationType="tns:RequestForQuoteType" query="//@id" tokenName="tns:ID"/>
+    <tokenLocator informationType="tns:QuoteAcceptType" query="//@id" tokenName="tns:ID"/>
+    <roleType name="BuyerRoleType">
+        <behavior name="BuyerBehavior"/>
+    </roleType>
+    <roleType name="SellerRoleType">
+        <behavior interface="SellerInterface" name="SellerBehavior"/>
+    </roleType>
+    <relationshipType name="BuyerSeller">
+        <roleType typeRef="tns:BuyerRoleType"/>
+        <roleType typeRef="tns:SellerRoleType"/>
+    </relationshipType>
+    <participantType name="Buyer">
+        <roleType typeRef="tns:BuyerRoleType"/>
+    </participantType>
+    <participantType name="Seller">
+        <roleType typeRef="tns:SellerRoleType"/>
+    </participantType>
+    <channelType name="Buyer2SellerChannelType">
+        <roleType typeRef="tns:SellerRoleType"/>
+        <reference>
+            <token name="tns:SellerRef"/>
+        </reference>
+        <identity type="primary">
+            <token name="tns:ID"/>
+        </identity>
+    </channelType>
+    <choreography name="AcceptQuote">
+        <relationship type="tns:BuyerSeller"/>
+        <variableDefinitions>
+            <variable channelType="tns:Buyer2SellerChannelType" free="true" name="Buyer2SellerC" roleTypes="tns:BuyerRoleType tns:SellerRoleType"/>
+        </variableDefinitions>
+        <interaction channelVariable="tns:Buyer2SellerC" name="BuyerAcceptQuote" operation="acceptQuote">
+            <description type="documentation">
+                Buyer accepts a Quote
+            </description>
+            <participate fromRoleTypeRef="tns:BuyerRoleType" relationshipType="tns:BuyerSeller" toRoleTypeRef="tns:SellerRoleType"/>
+            <exchange action="request" informationType="tns:QuoteAcceptType" name="acceptQuoteReq">
+                <send/>
+                <receive/>
+            </exchange>
+            <exchange action="respond" informationType="tns:QuoteAcceptType" name="acceptQuoteResp">
+                <send/>
+                <receive/>
+            </exchange>
+        </interaction>
+    </choreography>
+    <choreography name="choreo-with-sub-choreo-cdl" root="true">
+        <relationship type="tns:BuyerSeller"/>
+        <variableDefinitions>
+            <variable channelType="tns:Buyer2SellerChannelType" name="Buyer2SellerC" roleTypes="tns:BuyerRoleType tns:SellerRoleType"/>
+            <variable informationType="tns:BooleanType" name="barteringDone" roleTypes="tns:BuyerRoleType tns:SellerRoleType"/>
+        </variableDefinitions>
+        <sequence>
+            <interaction channelVariable="tns:Buyer2SellerC" name="BuyerRequestsQuote" operation="requestForQuote">
+                <description type="documentation">
+                    Buyer requests a Quote - this is the initiator
+                </description>
+                <participate fromRoleTypeRef="tns:BuyerRoleType" relationshipType="tns:BuyerSeller" toRoleTypeRef="tns:SellerRoleType"/>
+                <exchange action="request" informationType="tns:RequestForQuoteType" name="request">
+                    <send/>
+                    <receive/>
+                </exchange>
+                <exchange action="respond" informationType="tns:RequestForQuoteType" name="response">
+                    <send/>
+                    <receive/>
+                </exchange>
+            </interaction>
+            <perform choreographyName="tns:AcceptQuote">
+                <bind name="BindBuyer2SellerAtBuyer">
+                    <this roleType="tns:BuyerRoleType" variable="cdl:getVariable('Buyer2SellerC','','')"/>
+                    <free roleType="tns:BuyerRoleType" variable="cdl:getVariable('Buyer2SellerC','','')"/>
+                </bind>
+                <bind name="BindBuyer2SellerAtSeller">
+                    <this roleType="tns:SellerRoleType" variable="cdl:getVariable('Buyer2SellerC','','')"/>
+                    <free roleType="tns:SellerRoleType" variable="cdl:getVariable('Buyer2SellerC','','')"/>
+                </bind>
+            </perform>
+        </sequence>
+    </choreography>
+    
+</package>

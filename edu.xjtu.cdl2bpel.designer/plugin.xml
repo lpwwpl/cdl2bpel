@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="edu.xjtu.cdl2bpel.designer.editor.ChoreographyEditor"
+            default="false"
+            extensions="cdl"
+            id="edu.xjtu.cdl2bpel.designer.CDLViewer"
+            name="CDLViewer">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="edu.xjtu.cdl2bpel.designer.CDLViewer">
+         <propertySection
+               class="edu.xjtu.cdl2bpel.designer.editor.properties.AllPropertySheetSection"
+               id="edu.xjtu.cdl2bpel.designer.cdl.AllSection"
+               tab="edu.xjtu.cdl2bpel.designer.CDLViewer.AllTab">
+            <input
+                  type="edu.xjtu.cdl2bpel.cdl.CDLElement">
+            </input>
+         </propertySection>
+      </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="edu.xjtu.cdl2bpel.designer.CDLViewer">
+         <propertyTab
+               category="CDL"
+               id="edu.xjtu.cdl2bpel.designer.CDLViewer.AllTab"
+               label="All">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="edu.xjtu.cdl2bpel.designer.CDLViewer"
+            typeMapper="edu.xjtu.cdl2bpel.designer.editor.properties.TypeMapper">
+         <propertyCategory
+               category="CDL"></propertyCategory>
+      </propertyContributor>
+   </extension>
+
+</plugin>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ CDL2BPEL_XJTU
+
+ $Id: plugin.xml,v 1.1 2011/02/21 06:24:12 administrator Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://edu/xjtu/cdl2bpel/cdl.ecore"
+            class="edu.xjtu.cdl2bpel.cdl.CDLPackage"
+            genModel="model/cdl/cdl.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="CDL2BPEL_XJTU"
+    modelDirectory="/edu.xjtu.cdl2bpel.mapping/src" modelPluginID="edu.xjtu.cdl2bpel.mapping"
+    modelName="Orchestra" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>orchestra.ecore</foreignModel>
+  <genPackages prefix="Orchestra" basePackage="edu.xjtu.cdl2bpel" disposableProviderFactory="true"
+      ecorePackage="orchestra.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="orchestra.ecore#//UsageEnumByChannel">
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//UsageEnumByChannel/Distinct"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//UsageEnumByChannel/Once"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//UsageEnumByChannel/Shared"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="orchestra.ecore#//MessageTypeEnumByInteraction">
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//MessageTypeEnumByInteraction/Request"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//MessageTypeEnumByInteraction/Response"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//MessageTypeEnumByInteraction/Notification"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="orchestra.ecore#//IdentityTypeEnum">
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//IdentityTypeEnum/Primary"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//IdentityTypeEnum/Alternate"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//IdentityTypeEnum/Association"/>
+      <genEnumLiterals ecoreEnumLiteral="orchestra.ecore#//IdentityTypeEnum/Derived"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="orchestra.ecore#//BPActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPActivity/correlationset"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPActivity/additional"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Copy">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Copy/targetVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Copy/targetPart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Copy/sourceExpression"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Copy/sourceVariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Copy/sourcePart"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//AtomicUnit"/>
+    <genClasses ecoreClass="orchestra.ecore#//BPOrchestra">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPOrchestra/completionExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPOrchestra/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPOrchestra/enclosedBPOrchestra"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPOrchestra/exceptionHandlers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPOrchestra/compensateHandlers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPOrchestra/root"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPOrchestra/hasCompletionExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPOrchestra/participants"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPOrchestra/enclosingBPOrchestras"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPOrchestra/coordinated"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPOrchestra/isolate"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orchestra.ecore#//BPElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//BPElement/addition"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//ChannelType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//ChannelType/channelType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//ChannelType/interfaceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//ChannelType/usage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//ChannelType/identities"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Choice"/>
+    <genClasses ecoreClass="orchestra.ecore#//CompensateHandler">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference orchestra.ecore#//CompensateHandler/activities"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Conditional">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Conditional/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//FaultHandler">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//FaultHandler/activities"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Compensation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Compensation/completionHandler"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Compensation/instanceId"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orchestra.ecore#//Communication">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Communication/channelType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Communication/variable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Communication/variablePart"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Communication/message"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Communication/correlation"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Message">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Message/faultName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//Message/parts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Message/classification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Message/informationType"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Operation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//Operation/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Parallel"/>
+    <genClasses ecoreClass="orchestra.ecore#//Part">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Part/informationType"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Perform">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Perform/bpOrchestra"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Perform/instanceId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Perform/isolated"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Perform/waitForCompletion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//Perform/variableBindings"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//CaseException">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//CaseException/exceptionValue"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//ReceiveEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//ReceiveEnd/isCreatedByPassedChannel"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//SynReply">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//SynReply/isCreatedByPassedChannel"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Sequence"/>
+    <genClasses ecoreClass="orchestra.ecore#//GlobalArchitecture">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//GlobalArchitecture/stateless"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//GlobalArchitecture/namespaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//GlobalArchitecture/interfaces"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//GlobalArchitecture/informationTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//GlobalArchitecture/bpOrchestras"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//InterfaceOfGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//InterfaceOfGroup/operations"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="orchestra.ecore#//BPOrderingStruturalActivity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//BPOrderingStruturalActivity/activityTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//OnAlarm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//OnAlarm/timeToComplete"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//OnAlarm/timeoutActivityTypes"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//UnobservableBySilenAction"/>
+    <genClasses ecoreClass="orchestra.ecore#//VariableBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//VariableBinding/parentVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//VariableBinding/boundVariable"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Variable/mutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Variable/free"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Variable/silent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Variable/informationType"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//When">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//When/isMatched"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//When/matchedExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//While">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//While/breakOutExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Namespace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Namespace/prefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Namespace/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Namespace/schemaLocation"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Identity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Identity/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Identity/tokens"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//InformationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//InformationType/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//InformationType/element"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//InformationType/tokenLocators"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//TokenLocator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//TokenLocator/query"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//TokenLocator/part"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//TokenLocator/informationType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//TokenLocator/token"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//InfoTypeOfOrchestra"/>
+    <genClasses ecoreClass="orchestra.ecore#//TokenOfProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//TokenOfProperty/informationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//TokenOfProperty/values"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//InformationTypeZlp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//InformationTypeZlp/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//InformationTypeZlp/element"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference orchestra.ecore#//InformationTypeZlp/tokenLocators"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//FaultBranches">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//FaultBranches/faultVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//FaultBranches/activities"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//FaultBranches/faultType"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//EventHandler">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//EventHandler/onAlarms"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//EventHandler/onMessage"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Correlation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Correlation/initiate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Correlation/set"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//CorrelationSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//CorrelationSet/properties"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//CorrelationSet/token"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//AsynCallBack">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//AsynCallBack/isCreatedByPassedChannel"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//Assign">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference orchestra.ecore#//Assign/copies"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//SendEnd">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//SendEnd/isCreatedByPassedChannel"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//NoAction"/>
+    <genClasses ecoreClass="orchestra.ecore#//OnMessageByEventHandler">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//OnMessageByEventHandler/partnerLink"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//OnMessageByEventHandler/portType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//OnMessageByEventHandler/operation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//OnMessageByEventHandler/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="orchestra.ecore#//ScopeWithNoAttr"/>
+    <genClasses ecoreClass="orchestra.ecore#//Delay">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Delay/forExpression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute orchestra.ecore#//Delay/untilExpression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

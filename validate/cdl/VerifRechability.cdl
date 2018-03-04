@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.w3.org/2005/10/cdl" xmlns:apns="http://tempuri.org/services/loanapprover" xmlns:asns="http://tempuri.org/services/loanassessor" xmlns:cdl="http://www.w3.org/2005/10/cdl" xmlns:cdl2="http://www.pi4soa.org/cdl2" xmlns:loandef="http://tempuri.org/services/loandefinitions" xmlns:tns="http://acme.com/loanprocessing" xmlns:xsd="http://www.w3.org/2001/XMLSchema" author="GPB" name="loanApprovalProcess" targetNamespace="http://acme.com/loanprocessing" version="0.2">
+    <description type="documentation">
+        CDL for ActiveBPEL Loan Approval Process Example
+    </description>
+    <informationType name="Approval" type="apns:approvalMessage"/>
+    <informationType name="CreditInformation" type="loandef:creditInformationMessage"/>
+    <informationType name="RiskAssessment" type="asns:riskAssessmentMessage"/>
+    <informationType name="URL" type="xsd:any"/>
+    <informationType name="loanRequestError" type="loandef:loanRequestErrorMessage"/>
+    <token informationType="tns:URL" name="URL"/>
+    <roleType name="ApprovalCoordinator">
+        <behavior interface="ApprovalCoordinator" name="ApprovalCoordinator"/>
+    </roleType>
+    <roleType name="Approver">
+        <behavior interface="apns:loanApproverPT" name="ApproverWebService"/>
+    </roleType>
+    <roleType name="Assessor">
+        <behavior interface="asns:riskAssessmentPT" name="AssessorWebService"/>
+    </roleType>
+    <roleType name="Customer">
+        <behavior interface="Customer" name="Customer"/>
+    </roleType>
+    <roleType name="LoanApproval">
+        <behavior interface="apns:loanApprovalPT" name="LoanApprovalWebService">
+            <description type="documentation">
+                This is the behavior LoanApprovalWebService
+            </description>
+        </behavior>
+    </roleType>
+    <relationshipType name="CustomerLoanApproval">
+        <roleType typeRef="tns:Customer"/>
+        <roleType typeRef="tns:LoanApproval"/>
+    </relationshipType>
+    <relationshipType name="LoanApprover">
+        <roleType typeRef="tns:ApprovalCoordinator"/>
+        <roleType typeRef="tns:Approver"/>
+    </relationshipType>
+    <relationshipType name="LoanAssessor">
+        <roleType typeRef="tns:ApprovalCoordinator"/>
+        <roleType typeRef="tns:Assessor"/>
+    </relationshipType>
+    <participantType name="Approver">
+        <roleType typeRef="tns:Approver"/>
+    </participantType>
+    <participantType name="Assessor">
+        <roleType typeRef="tns:Assessor"/>
+    </participantType>
+    <participantType name="Customer">
+        <roleType typeRef="tns:Customer"/>
+    </participantType>
+    <participantType name="LoanApproval">
+        <roleType typeRef="tns:LoanApproval"/>
+        <roleType typeRef="tns:ApprovalCoordinator"/>
+    </participantType>
+    <channelType name="ApproverChannel">
+        <roleType typeRef="tns:Approver"/>
+        <reference>
+            <token name="tns:URL"/>
+        </reference>
+    </channelType>
+    <channelType name="AssessorChannel">
+        <roleType typeRef="tns:Assessor"/>
+        <reference>
+            <token name="tns:URL"/>
+        </reference>
+    </channelType>
+    <channelType name="LoanApprovalChannel">
+        <roleType typeRef="tns:LoanApproval"/>
+        <reference>
+            <token name="tns:URL"/>
+        </reference>
+    </channelType>
+    <choreography name="MainChoreo" root="true">
+        <relationship type="tns:CustomerLoanApproval"/>
+        <relationship type="tns:LoanApprover"/>
+        <relationship type="tns:LoanAssessor"/>
+        <variableDefinitions>
+            <variable informationType="tns:Approval" name="approvalInfo"/>
+            <variable channelType="tns:ApproverChannel" name="approverChannel"/>
+            <variable channelType="tns:AssessorChannel" name="assessmentChannel"/>
+            <variable informationType="tns:loanRequestError" name="error"/>
+            <variable channelType="tns:LoanApprovalChannel" name="loanApprovalChannel"/>
+            <variable informationType="tns:CreditInformation" name="loanRequest"/>
+            <variable informationType="tns:RiskAssessment" name="riskAssessment"/>
+        </variableDefinitions>
+        <choreography name="subChoreo">
+            <relationship type="tns:CustomerLoanApproval"/>
+            <relationship type="tns:LoanApprover"/>
+            <relationship type="tns:LoanAssessor"/>
+            <noAction roleType="tns:LoanApproval"/>
+            <finalizerBlock name="subChoreoNoAcceptFinalizerBlock">
+                <noAction/>
+            </finalizerBlock>
+            <finalizerBlock name="subChoreoAllOKFinalizerBlock">
+                <noAction/>
+            </finalizerBlock>
+        </choreography>
+        <sequence>
+            <interaction channelVariable="tns:loanApprovalChannel" name="LoanApprovalRequest" operation="approve">
+                <description type="documentation">
+                    The customer loan approval request
+                </description>
+                <participate fromRoleTypeRef="tns:Customer" relationshipType="tns:CustomerLoanApproval" toRoleTypeRef="tns:LoanApproval"/>
+                <exchange action="request" informationType="tns:CreditInformation" name="ApprovalRequest">
+                    <send variable="cdl:getVariable('loanRequest','','')"/>
+                    <receive variable="cdl:getVariable('loanRequest','','')"/>
+                </exchange>
+            </interaction>
+            <interaction channelVariable="tns:assessmentChannel" name="AssessRequest" operation="assess">
+                <participate fromRoleTypeRef="tns:ApprovalCoordinator" relationshipType="tns:LoanAssessor" toRoleTypeRef="tns:Assessor"/>
+                <exchange action="request" informationType="tns:CreditInformation" name="ApprovalRequest">
+                    <description type="documentation">
+                        This is the exchange details for the request exchange associated with interaction AssessRequest
+                    </description>
+                    <send variable="cdl:getVariable('loanRequest','','')"/>
+                    <receive variable="cdl:getVariable('loanRequest','','')"/>
+                </exchange>
+            </interaction>
+            <choice>
+                <workunit guard="cdl:globalizedTrigger(&quot;cdl:getVariable('loanRequest', 'firstName','')=zp&quot;,'Assessor')" name="faultresp1">
+                    <description type="documentation">
+                        check if firstName == zp
+                    </description>
+                    <sequence>
+                        <assign roleType="tns:Assessor">
+                            <copy name="SetErrorCode">
+                                <source expression="42"/>
+                                <target variable="cdl:getVariable('error','errorCode','')"/>
+                            </copy>
+                        </assign>
+                        <interaction channelVariable="tns:assessmentChannel" name="AssessFault" operation="assess">
+                            <participate fromRoleTypeRef="tns:ApprovalCoordinator" relationshipType="tns:LoanAssessor" toRoleTypeRef="tns:Assessor"/>
+                            <exchange action="respond" faultName="loanProcessFault" informationType="tns:loanRequestError" name="ApprovalFault">
+                                <description type="documentation">
+                                    This is the exchange details for the respond exchange associated with interaction AssessFault
+                                </description>
+                                <send variable="cdl:getVariable('error','','')"/>
+                                <receive variable="cdl:getVariable('error','','')"/>
+                            </exchange>
+                        </interaction>
+                        <interaction channelVariable="tns:loanApprovalChannel" name="LoanApprovalFailed" operation="approve">
+                            <description type="documentation">
+                                The customer loan approval request failed
+                            </description>
+                            <participate fromRoleTypeRef="tns:Customer" relationshipType="tns:CustomerLoanApproval" toRoleTypeRef="tns:LoanApproval"/>
+                            <exchange action="respond" faultName="loanProcessFault" informationType="tns:loanRequestError" name="ApprovalFault">
+                                <send causeException="LoanRequestFailed" variable="cdl:getVariable('error','','')"/>
+                                <receive causeException="LoanRequestFailed" variable="cdl:getVariable('error','','')"/>
+                            </exchange>
+                        </interaction>
+                    </sequence>
+                </workunit>
+                <workunit guard="cdl:globalizedTrigger(&quot;cdl:getVariable('loanRequest', 'firstName','')!=zp&quot;,'Assessor')" name="okAssess">
+                    <description type="documentation">
+                        check if firstName != zp
+                    </description>
+                    <sequence>
+                        <assign roleType="tns:Assessor">
+                            <copy name="SetAssessFlag">
+                                <source expression="'low'"/>
+                                <target variable="cdl:getVariable('riskAssessment','accept','')"/>
+                            </copy>
+                        </assign>
+                        <interaction channelVariable="tns:assessmentChannel" name="AssessResponse" operation="assess">
+                            <participate fromRoleTypeRef="tns:ApprovalCoordinator" relationshipType="tns:LoanAssessor" toRoleTypeRef="tns:Assessor"/>
+                            <exchange action="respond" informationType="tns:Approval" name="ApprovalResponse">
+                                <description type="documentation">
+                                    This is the exchange details for the respond exchange associated with interaction AssessResponse
+                                </description>
+                                <send variable="cdl:getVariable('approvalInfo','','')"/>
+                                <receive variable="cdl:getVariable('approvalInfo','','')"/>
+                            </exchange>
+                        </interaction>
+                    </sequence>
+                </workunit>
+            </choice>
+            <interaction channelVariable="tns:approverChannel" name="ApproveRequest" operation="approve">
+                <participate fromRoleTypeRef="tns:ApprovalCoordinator" relationshipType="tns:LoanApprover" toRoleTypeRef="tns:Approver"/>
+                <exchange action="request" informationType="tns:CreditInformation" name="ApprovalRequest">
+                    <send variable="cdl:getVariable('loanRequest','','')"/>
+                    <receive variable="cdl:getVariable('loanRequest','','')"/>
+                </exchange>
+            </interaction>
+            <choice>
+                <workunit guard="cdl:globalizedTrigger(&quot;cdl:getVariable('loanRequest', 'amount','')&gt;=10000&quot;,'Approver')" name="faultresp">
+                    <description type="documentation">
+                        Is amount &gt;= 10000
+                    </description>
+                    <sequence>
+                        <assign roleType="tns:Approver">
+                            <copy name="SetErrorCode">
+                                <source expression="42"/>
+                                <target variable="cdl:getVariable('error','errorCode','')"/>
+                            </copy>
+                        </assign>
+                        <interaction channelVariable="tns:approverChannel" name="ApproveFault" operation="approve">
+                            <participate fromRoleTypeRef="tns:ApprovalCoordinator" relationshipType="tns:LoanApprover" toRoleTypeRef="tns:Approver"/>
+                            <exchange action="respond" faultName="loanProcessFault" informationType="tns:loanRequestError" name="ApprovalFault">
+                                <send variable="cdl:getVariable('error','','')"/>
+                                <receive variable="cdl:getVariable('error','','')"/>
+                            </exchange>
+                        </interaction>
+                        <interaction channelVariable="tns:loanApprovalChannel" name="LoanApprovalFailed" operation="approve">
+                            <description type="documentation">
+                                The customer loan approval request failed
+                            </description>
+                            <participate fromRoleTypeRef="tns:Customer" relationshipType="tns:CustomerLoanApproval" toRoleTypeRef="tns:LoanApproval"/>
+                            <exchange action="respond" faultName="loanProcessFault" informationType="tns:loanRequestError" name="ApprovalFault">
+                                <send causeException="LoanRequestFailed" variable="cdl:getVariable('error','','')"/>
+                                <receive causeException="LoanRequestFailed" variable="cdl:getVariable('error','','')"/>
+                            </exchange>
+                        </interaction>
+                    </sequence>
+                </workunit>
+                <workunit guard="cdl:globalizedTrigger(&quot;cdl:getVariable('loanRequest', 'amount','')&lt;10000&quot;,'Approver')" name="okApprover">
+                    <description type="documentation">
+                        Is amount &lt; 10000
+                    </description>
+                    <assign roleType="tns:Approver">
+                        <copy name="SetApprovedFlag">
+                            <source expression="'yes'"/>
+                            <target variable="cdl:getVariable('approvalInfo','accept','')"/>
+                        </copy>
+                    </assign>
+                </workunit>
+            </choice>
+            <interaction channelVariable="tns:loanApprovalChannel" name="LoanApprovalResponse" operation="approve">
+                <description type="documentation">
+                    The customer loan approval response
+                </description>
+                <participate fromRoleTypeRef="tns:Customer" relationshipType="tns:CustomerLoanApproval" toRoleTypeRef="tns:LoanApproval"/>
+                <exchange action="respond" informationType="tns:Approval" name="ApprovalResponse">
+                    <send variable="cdl:getVariable('approvalInfo','','')"/>
+                    <receive variable="cdl:getVariable('approvalInfo','','')"/>
+                </exchange>
+            </interaction>
+        </sequence>
+        <exceptionBlock name="ExceptionHandler">
+            <workunit guard="cdl:hasExceptionOccurred('LoanRequestFailed')" name="LoanRequestFailed">
+                <noAction/>
+            </workunit>
+        </exceptionBlock>
+        <finalizerBlock name="drawDown">
+            <workunit name="drawdown">
+                <description type="documentation">
+                    drawDown Description
+                </description>
+                <noAction/>
+            </workunit>
+        </finalizerBlock>
+    </choreography>
+</package>
